@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from 'react-router-dom';
 import * as yup from 'yup'
 import schema from './validation'
@@ -33,6 +33,7 @@ const App = () => {
   const [formValues, setFormValues] = useState(initialValues)
   const [toppingsOrdered, setToppingsOrdered] = useState([])
   const [formErrors, setFormErrors] = useState('')
+  const [disabled, setDisabled] = useState(true)
 
   // Validate the name input
   const validate = (name, value) => {
@@ -41,6 +42,11 @@ const App = () => {
       .then(() => setFormErrors(''))
       .catch(err => setFormErrors(err.errors[0]))
   }
+  
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => setDisabled(!valid))
+    console.log(disabled)
+  }, [formValues])
 
   // Update the form values state when a user makes a change
   const change = (name, value) => {
@@ -93,6 +99,7 @@ const App = () => {
           change={change}
           submit={submit}
           errors={formErrors}
+          disabled={disabled}
           />
       </Route>
 

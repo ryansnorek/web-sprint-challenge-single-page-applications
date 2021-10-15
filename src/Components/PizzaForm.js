@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
 
-export default function PizzaForm({ formValues, change, submit, errors }) {
+export default function PizzaForm({ formValues, change, submit, errors, disabled }) {
    
     const onChange = (e) => {
         // Pull variables out of event.target object
@@ -19,17 +19,16 @@ export default function PizzaForm({ formValues, change, submit, errors }) {
         <div className='pizza-form'>
             <h3>Build Your Own Pizza</h3>
             <img src='../Assets/Pizza.jpg' alt='Pizza Header'/>
-
             <form onSubmit={submit}>
-                <h4>Build You Own Pizza</h4>
-                {/* Name */}
+                <h4>Build Your Own Pizza</h4>
+                <div className='errors'>{errors}</div>
                 <label>
                     <input  id='name-input' 
                             type='text' 
                             name='name' 
                             value={formValues.name} 
                             onChange={onChange} 
-                            placeholder='Please enter name'
+                            placeholder='Please enter your name'
                     />
                 </label>
                 <div className='subheader'>
@@ -105,7 +104,7 @@ export default function PizzaForm({ formValues, change, submit, errors }) {
                     <select name="qty">
                         <option value='1'>1</option>
                     </select>
-                    <button id='order-button'>Add to Order</button>
+                    <button id='order-button' disabled={disabled}>Add to Order</button>
                 </div>
             </form>
         </div>
