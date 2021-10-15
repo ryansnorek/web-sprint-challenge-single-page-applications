@@ -10,9 +10,13 @@ const App = () => {
 
   // Initialize form values and order state
   const initialValues = {
+    name: '',
     size: '',
     sauce: '',
-    toppings: [],
+    topping1: false,
+    topping2: false,
+    topping3: false,
+    topping4: false,
     sub: false,
     special: '',
     order: '1'
@@ -20,15 +24,14 @@ const App = () => {
 
   const [order, setOrder] = useState([])
   const [formValues, setFormValues] = useState(initialValues)
-  const [toppingsOrder, setToppingsOrder] = useState([])
+  // const [toppingsOrder, setToppingsOrder] = useState([])
 
   // Update the form values state when a user makes a change
   const change = (name, value) => {
     
-    if (name === 'topping') {
-      formValues.toppings.push(value)
-      // setToppingsOrder(formValues.toppings)
-    }
+    // if (name === 'topping') {
+    //   formValues.toppings.push(value)
+    // }
 
     setFormValues({ ...formValues, [name]: value})
     console.log(formValues)
@@ -38,9 +41,13 @@ const App = () => {
     e.preventDefault()
     
     const newOrder = {
+        name: formValues.name,
         size: formValues.size,
         sauce: formValues.sauce,
-        toppings: toppingsOrder,
+        topping1: false,
+        topping2: false,
+        topping3: false,
+        topping4: false,
         sub: false,
         special: '',
         order: formValues.qty
@@ -56,16 +63,15 @@ const App = () => {
         <Home/>
       </Route>
 
-      <Route path='/pizzaform'>
+      <Route path='/pizza'>
         <PizzaForm 
           formValues={formValues}
-          toppings={toppingsOrder} 
           change={change}
           submit={submit}
           />
       </Route>
 
-      <Route path='/pizza'>
+      <Route path='/ordered'>
         <Pizza/>
       </Route>
 

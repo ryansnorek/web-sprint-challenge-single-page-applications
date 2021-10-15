@@ -8,7 +8,7 @@ export default function Home() {
     <>
         <Header/>
         <h2>Your favorite food, delivered while coding</h2>
-        <Link to='/pizzaform' className='pizza-button'>Pizza?</Link>
+        <Link id='order-pizza' to='/pizza' className='pizza-button'>Pizza?</Link>
     </>
     )
 }

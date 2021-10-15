@@ -11,7 +11,6 @@ export default function PizzaForm({ formValues, change, submit }) {
         // console.log(e.target.type)
         // console.log(theValue)
         
-        
         change(name, value)
     }
 
@@ -24,11 +23,21 @@ export default function PizzaForm({ formValues, change, submit }) {
 
             <form onSubmit={submit}>
                 <h4>Build You Own Pizza</h4>
+                {/* Name */}
+                <label>
+                    <input  id='name-input' 
+                            type='text' 
+                            name='name' 
+                            value={formValues.name} 
+                            onChange={onChange} 
+                            placeholder='Please enter name'
+                    />
+                </label>
                 <div className='subheader'>
                     <h4>Choice of Size</h4>
                     <p>Required</p>
                 </div>
-                <select name='size' onChange={onChange}>
+                <select id='size-dropdown' name='size' onChange={onChange}>
                     <option value=''>Select</option>
                     <option value='small'>Small</option>
                     <option value='medium'>Medium</option>
@@ -48,7 +57,7 @@ export default function PizzaForm({ formValues, change, submit }) {
                 <div className='subheader'>
                     <h4>Add Toppings</h4>
                     {/* Add dynamic number */}
-                    <p>Choose up to 10</p>
+                    <p>Choose up to 4</p>
                 </div>
                 <div className='toppings'>
                     <div className='toppings-left'>
@@ -84,7 +93,7 @@ export default function PizzaForm({ formValues, change, submit }) {
                     <select name="qty">
                         <option value='1'>1</option>
                     </select>
-                    <button>Add to Order</button>
+                    <button id='order-button'>Add to Order</button>
                 </div>
             </form>
         </div>
