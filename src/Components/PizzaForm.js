@@ -33,27 +33,44 @@ export default function PizzaForm() {
                 </div>
                 <div className='subheader'>
                     <h4>Add Toppings</h4>
+                    {/* Add dynamic number */}
                     <p>Choose up to 10</p>
                 </div>
                 <div className='toppings'>
                     <div className='toppings-left'>
-                        <label><input checked='' name='pepperoni' type='checkbox'></input>Pepperoni</label>
-                        <label><input checked='' name='sausage' type='checkbox'></input>Sausage</label>
-                        <label><input checked='' name='canadianbacon' type='checkbox'></input>Canadian Bacon</label>
-                        <label><input checked='' name='spicysausage' type='checkbox'></input>Spicy Italian Sausage</label>
-                        <label><input checked='' name='chicken' type='checkbox'></input>Grilled Chicken</label>
-                        <label><input checked='' name='onions' type='checkbox'></input>Onions</label>
-                        <label><input checked='' name='fruity' type='checkbox'></input>Fruity Pebbles</label>
+                        <label><input checked='' name='pepperoni' type='checkbox'/>Pepperoni</label>
+                        <label><input checked='' name='sausage' type='checkbox'/>Sausage</label>
+                        <label><input checked='' name='canadianbacon' type='checkbox'/>Canadian Bacon</label>
+                        <label><input checked='' name='spicysausage' type='checkbox'/>Spicy Italian Sausage</label>
+                        <label><input checked='' name='chicken' type='checkbox'/>Grilled Chicken</label>
+                        <label><input checked='' name='onions' type='checkbox'/>Onions</label>
+                        <label><input checked='' name='fruity' type='checkbox'/>Fruity Pebbles</label>
                     </div>
                     <div className='toppings-right'>
-                        <label><input checked='' name='tomato' type='checkbox'></input>Diced Tomato</label>
-                        <label><input checked='' name='garlic' type='checkbox'></input>Roasted Garlic</label>
-                        <label><input checked='' name='olives' type='checkbox'></input>Black Olives</label>
-                        <label><input checked='' name='artichoke' type='checkbox'></input>Artichoke Hearts</label>
-                        <label><input checked='' name='threecheese' type='checkbox'></input>Three Cheese</label>
-                        <label><input checked='' name='pineapple' type='checkbox'></input>Pineapple</label>
-                        <label><input checked='' name='extracheese' type='checkbox'></input>Extra Cheese</label>
+                        <label><input checked='' name='tomato' type='checkbox'/>Diced Tomato</label>
+                        <label><input checked='' name='garlic' type='checkbox'/>Roasted Garlic</label>
+                        <label><input checked='' name='olives' type='checkbox'/>Black Olives</label>
+                        <label><input checked='' name='artichoke' type='checkbox'/>Artichoke Hearts</label>
+                        <label><input checked='' name='threecheese' type='checkbox'/>Three Cheese</label>
+                        <label><input checked='' name='pineapple' type='checkbox'/>Pineapple</label>
+                        <label><input checked='' name='extracheese' type='checkbox'/>Extra Cheese</label>
                     </div>
+                </div>
+                <div className='subheader'>
+                    <h4>Choice of Substitue</h4>
+                    {/* Add dynamic number */}
+                    <p>Choose up to 1</p>
+                </div>
+                <label><input type='checkbox'/>Gluten Free Crust (+$1.00)</label>
+                <div className='subheader'>
+                    <h4>Special Instructions</h4>
+                </div>
+                <label><input value='' name='special' type='text'/></label>
+                <div>
+                    <select>
+                        <option value='1'>1</option>
+                    </select>
+                    <button>Add to Order</button>
                 </div>
             </form>
         </body>
