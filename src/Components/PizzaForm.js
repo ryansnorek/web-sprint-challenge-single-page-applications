@@ -1,20 +1,34 @@
 import React from 'react'
 import Header from './Header'
 
-export default function PizzaForm() {
+export default function PizzaForm({ formValues, change, submit }) {
+   
+    const onChange = (e) => {
+        const { name, value, checked, type } = e.target
+        // const theValue = type === 'checked' ? checked : value
+        // console.log(e.target.name)
+        // console.log(e.target.value)
+        // console.log(e.target.type)
+        // console.log(theValue)
+        
+        
+        change(name, value)
+    }
+
     return (
     <>
         <Header/>
-        <body className='pizza-form'>
+        <div className='pizza-form'>
             <h3>Build Your Own Pizza</h3>
             <img src='../Assets/Pizza.jpg' alt='Pizza Header'/>
-            <form>
+
+            <form onSubmit={submit}>
                 <h4>Build You Own Pizza</h4>
                 <div className='subheader'>
                     <h4>Choice of Size</h4>
                     <p>Required</p>
                 </div>
-                <select name='size'>
+                <select name='size' onChange={onChange}>
                     <option value=''>Select</option>
                     <option value='small'>Small</option>
                     <option value='medium'>Medium</option>
@@ -26,10 +40,10 @@ export default function PizzaForm() {
                     <p>Required</p>
                 </div>
                 <div className='sauce'>
-                    <label><input value='red' name='sauce' type='radio'></input>Original Red</label>
-                    <label><input value='ranch' name='sauce' type='radio'></input>Garlic Ranch</label>
-                    <label><input value='bbq' name='sauce' type='radio'></input>BBQ Sauce</label>
-                    <label><input value='alfredo' name='sauce' type='radio'></input>Spinach Alfredo</label>
+                    <label><input value='red' name='sauce' type='radio' onChange={onChange}></input>Original Red</label>
+                    <label><input value='ranch' name='sauce' type='radio' onChange={onChange}></input>Garlic Ranch</label>
+                    <label><input value='bbq' name='sauce' type='radio' onChange={onChange}></input>BBQ Sauce</label>
+                    <label><input value='alfredo' name='sauce' type='radio' onChange={onChange}></input>Spinach Alfredo</label>
                 </div>
                 <div className='subheader'>
                     <h4>Add Toppings</h4>
@@ -38,22 +52,22 @@ export default function PizzaForm() {
                 </div>
                 <div className='toppings'>
                     <div className='toppings-left'>
-                        <label><input checked='' name='pepperoni' type='checkbox'/>Pepperoni</label>
-                        <label><input checked='' name='sausage' type='checkbox'/>Sausage</label>
-                        <label><input checked='' name='canadianbacon' type='checkbox'/>Canadian Bacon</label>
-                        <label><input checked='' name='spicysausage' type='checkbox'/>Spicy Italian Sausage</label>
-                        <label><input checked='' name='chicken' type='checkbox'/>Grilled Chicken</label>
-                        <label><input checked='' name='onions' type='checkbox'/>Onions</label>
-                        <label><input checked='' name='fruity' type='checkbox'/>Fruity Pebbles</label>
+                        <label><input name='topping' value ='pepperoni' type='checkbox' onChange={onChange}/>Pepperoni</label>
+                        <label><input name='topping' value='sausage' type='checkbox' onChange={onChange}/>Sausage</label>
+                        <label><input name='topping' value='canadianbacon' type='checkbox' onChange={onChange}/>Canadian Bacon</label>
+                        <label><input name='topping' value='spicysausage' type='checkbox' onChange={onChange}/>Spicy Italian Sausage</label>
+                        <label><input name='topping' value='chicken' type='checkbox' onChange={onChange}/>Grilled Chicken</label>
+                        <label><input name='topping' value='onions' type='checkbox' onChange={onChange}/>Onions</label>
+                        <label><input name='topping' value='fruitypebbles' type='checkbox' onChange={onChange}/>Fruity Pebbles</label>
                     </div>
                     <div className='toppings-right'>
-                        <label><input checked='' name='tomato' type='checkbox'/>Diced Tomato</label>
-                        <label><input checked='' name='garlic' type='checkbox'/>Roasted Garlic</label>
-                        <label><input checked='' name='olives' type='checkbox'/>Black Olives</label>
-                        <label><input checked='' name='artichoke' type='checkbox'/>Artichoke Hearts</label>
-                        <label><input checked='' name='threecheese' type='checkbox'/>Three Cheese</label>
-                        <label><input checked='' name='pineapple' type='checkbox'/>Pineapple</label>
-                        <label><input checked='' name='extracheese' type='checkbox'/>Extra Cheese</label>
+                        <label><input name='topping' value='tomato' type='checkbox' onChange={onChange}/>Diced Tomato</label>
+                        <label><input name='topping' value='garlic' type='checkbox' onChange={onChange}/>Roasted Garlic</label>
+                        <label><input name='topping' value='olives' type='checkbox' onChange={onChange}/>Black Olives</label>
+                        <label><input name='topping' value='artichoke' type='checkbox' onChange={onChange}/>Artichoke Hearts</label>
+                        <label><input name='topping' value='3cheese' type='checkbox' onChange={onChange}/>Three Cheese</label>
+                        <label><input name='topping' value='pineapple' type='checkbox' onChange={onChange}/>Pineapple</label>
+                        <label><input name='topping' value='extracheese' type='checkbox' onChange={onChange}/>Extra Cheese</label>
                     </div>
                 </div>
                 <div className='subheader'>
@@ -61,19 +75,19 @@ export default function PizzaForm() {
                     {/* Add dynamic number */}
                     <p>Choose up to 1</p>
                 </div>
-                <label><input type='checkbox'/>Gluten Free Crust (+$1.00)</label>
+                <label><input name='sub' type='checkbox' onChange={onChange}/>Gluten Free Crust (+$1.00)</label>
                 <div className='subheader'>
                     <h4>Special Instructions</h4>
                 </div>
-                <label><input value='' name='special' type='text'/></label>
+                <label><input value='' name='special' type='text' onChange={onChange}/></label>
                 <div>
-                    <select>
+                    <select name="qty">
                         <option value='1'>1</option>
                     </select>
                     <button>Add to Order</button>
                 </div>
             </form>
-        </body>
+        </div>
     </>
     )
 }
