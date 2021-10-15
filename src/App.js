@@ -22,16 +22,31 @@ const App = () => {
     order: '1'
   }
 
+  const toppingList = [
+    'pepperoni', 'sausage', 'canadianbacon', 'spicysausage',
+    'chicken', 'onions', 'fruitypebbles', 'tomato', 'garlic',
+    'olives', 'artichoke', '3cheese', 'pineapple', 'extracheese'
+  ]
+
   const [order, setOrder] = useState([])
   const [formValues, setFormValues] = useState(initialValues)
-  // const [toppingsOrder, setToppingsOrder] = useState([])
+  const [toppingsOrdered, setToppingsOrdered] = useState([])
 
   // Update the form values state when a user makes a change
   const change = (name, value) => {
     
-    // if (name === 'topping') {
-    //   formValues.toppings.push(value)
-    // }
+    const toppings = []
+    // Loop through the current form values
+    for (let item in formValues) {
+      // Then loop through the possible toppings to find a match
+      toppingList.map(topping => {
+        // If it's checked(true) then push it in an array
+        if (topping === item && formValues[item] === true) {
+          toppings.push(topping)
+        }
+      }) 
+    }
+    setToppingsOrdered(toppings)
 
     setFormValues({ ...formValues, [name]: value})
     console.log(formValues)
@@ -41,17 +56,15 @@ const App = () => {
     e.preventDefault()
     
     const newOrder = {
-        name: formValues.name,
+        name: formValues.name.trim(),
         size: formValues.size,
         sauce: formValues.sauce,
-        topping1: false,
-        topping2: false,
-        topping3: false,
-        topping4: false,
-        sub: false,
-        special: '',
+        toppings: toppingsOrdered,
+        sub: formValues.sub,
+        special: formValues.special.trim(),
         order: formValues.qty
     }
+    console.log(newOrder)
     setOrder(newOrder)
     setFormValues(initialValues)
 }

@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './Header'
 
 export default function PizzaForm({ formValues, change, submit }) {
    
+    // const [orderedToppings, setOrderedToppings] = useState([])
+
     const onChange = (e) => {
         const { name, value, checked, type } = e.target
-        // const theValue = type === 'checked' ? checked : value
+        const theValue = type === 'checkbox' ? checked : value
         // console.log(e.target.name)
         // console.log(e.target.value)
         // console.log(e.target.type)
         // console.log(theValue)
-        
-        change(name, value)
+        change(name, theValue)
     }
 
     return (
@@ -61,22 +62,22 @@ export default function PizzaForm({ formValues, change, submit }) {
                 </div>
                 <div className='toppings'>
                     <div className='toppings-left'>
-                        <label><input name='topping' value ='pepperoni' type='checkbox' onChange={onChange}/>Pepperoni</label>
-                        <label><input name='topping' value='sausage' type='checkbox' onChange={onChange}/>Sausage</label>
-                        <label><input name='topping' value='canadianbacon' type='checkbox' onChange={onChange}/>Canadian Bacon</label>
-                        <label><input name='topping' value='spicysausage' type='checkbox' onChange={onChange}/>Spicy Italian Sausage</label>
-                        <label><input name='topping' value='chicken' type='checkbox' onChange={onChange}/>Grilled Chicken</label>
-                        <label><input name='topping' value='onions' type='checkbox' onChange={onChange}/>Onions</label>
-                        <label><input name='topping' value='fruitypebbles' type='checkbox' onChange={onChange}/>Fruity Pebbles</label>
+                        <label><input name='pepperoni' type='checkbox' onChange={onChange}/>Pepperoni</label>
+                        <label><input name='sausage' type='checkbox' onChange={onChange}/>Sausage</label>
+                        <label><input name='canadianbacon' type='checkbox' onChange={onChange}/>Canadian Bacon</label>
+                        <label><input name='spicysausage' type='checkbox' onChange={onChange}/>Spicy Italian Sausage</label>
+                        <label><input name='chicken' type='checkbox' onChange={onChange}/>Grilled Chicken</label>
+                        <label><input name='onions' type='checkbox' onChange={onChange}/>Onions</label>
+                        <label><input name='fruitypebbles' type='checkbox' onChange={onChange}/>Fruity Pebbles</label>
                     </div>
                     <div className='toppings-right'>
-                        <label><input name='topping' value='tomato' type='checkbox' onChange={onChange}/>Diced Tomato</label>
-                        <label><input name='topping' value='garlic' type='checkbox' onChange={onChange}/>Roasted Garlic</label>
-                        <label><input name='topping' value='olives' type='checkbox' onChange={onChange}/>Black Olives</label>
-                        <label><input name='topping' value='artichoke' type='checkbox' onChange={onChange}/>Artichoke Hearts</label>
-                        <label><input name='topping' value='3cheese' type='checkbox' onChange={onChange}/>Three Cheese</label>
-                        <label><input name='topping' value='pineapple' type='checkbox' onChange={onChange}/>Pineapple</label>
-                        <label><input name='topping' value='extracheese' type='checkbox' onChange={onChange}/>Extra Cheese</label>
+                        <label><input name='tomato' type='checkbox' onChange={onChange}/>Diced Tomato</label>
+                        <label><input name='garlic' type='checkbox' onChange={onChange}/>Roasted Garlic</label>
+                        <label><input name='olives' type='checkbox' onChange={onChange}/>Black Olives</label>
+                        <label><input name='artichoke' type='checkbox' onChange={onChange}/>Artichoke Hearts</label>
+                        <label><input name='3cheese' type='checkbox' onChange={onChange}/>Three Cheese</label>
+                        <label><input name='pineapple' type='checkbox' onChange={onChange}/>Pineapple</label>
+                        <label><input name='extracheese' type='checkbox' onChange={onChange}/>Extra Cheese</label>
                     </div>
                 </div>
                 <div className='subheader'>
@@ -84,11 +85,24 @@ export default function PizzaForm({ formValues, change, submit }) {
                     {/* Add dynamic number */}
                     <p>Choose up to 1</p>
                 </div>
-                <label><input name='sub' type='checkbox' onChange={onChange}/>Gluten Free Crust (+$1.00)</label>
+                <label>
+                    <input 
+                        name='sub' 
+                        type='checkbox' 
+                        onChange={onChange}
+                    />Gluten Free Crust (+$1.00)
+                    </label>
                 <div className='subheader'>
                     <h4>Special Instructions</h4>
                 </div>
-                <label><input value='' name='special' type='text' onChange={onChange}/></label>
+                <label>
+                    <input 
+                        value={formValues.special} 
+                        name='special' 
+                        type='text' 
+                        onChange={onChange}
+                    />
+                </label>
                 <div>
                     <select name="qty">
                         <option value='1'>1</option>
