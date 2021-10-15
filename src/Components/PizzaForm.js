@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './Header'
+import { Link } from 'react-router-dom'
 
 export default function PizzaForm({ formValues, change, submit, errors, disabled }) {
    
@@ -94,7 +95,8 @@ export default function PizzaForm({ formValues, change, submit, errors, disabled
                 </div>
                 <label>
                     <input 
-                        value={formValues.special} 
+                        value={formValues.special}
+                        id='special-text' 
                         name='special' 
                         type='text' 
                         onChange={onChange}

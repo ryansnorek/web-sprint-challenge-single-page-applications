@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route } from 'react-router-dom';
 import * as yup from 'yup'
 import schema from './validation'
+import axios from 'axios'
 // Components
 import Home from './Components/Home';
 import PizzaForm from "./Components/PizzaForm";
@@ -12,11 +13,8 @@ import Help from './Components/Help';
 const initialValues = {
   name: '',
   size: '',
-  sauce: '',
-  topping1: false,
-  topping2: false,
-  topping3: false,
-  topping4: false,
+  sauce: false,
+  toppings: '',
   sub: false,
   special: '',
   order: '1'
@@ -30,13 +28,14 @@ const toppingList = [
 const App = () => {
 
   const [order, setOrder] = useState([])
-  const [formValues, setFormValues] = useState(initialValues)
   const [toppingsOrdered, setToppingsOrdered] = useState([])
+  const [formValues, setFormValues] = useState(initialValues)
   const [formErrors, setFormErrors] = useState('')
   const [disabled, setDisabled] = useState(true)
 
   // Validate the name input
   const validate = (name, value) => {
+
     yup.reach(schema, name)
       .validate(value)
       .then(() => setFormErrors(''))
@@ -44,15 +43,12 @@ const App = () => {
   }
   
   useEffect(() => {
+    // If the form values are validated then enable the submit button
     schema.isValid(formValues).then(valid => setDisabled(!valid))
-    console.log(disabled)
   }, [formValues])
 
-  // Update the form values state when a user makes a change
-  const change = (name, value) => {
-
-    validate(name, value)
-
+  useEffect(() => {
+    // Get all the checked toppings 
     const toppings = []
     // Loop through the current form values
     for (let item in formValues) {
@@ -65,14 +61,19 @@ const App = () => {
       }) 
     }
     setToppingsOrdered(toppings)
+  },[formValues])
 
+  const change = (name, value) => {
+    // Validate that the name input is over 2 characters
+    if (name === 'name') validate(name, value)
     setFormValues({ ...formValues, [name]: value})
-    console.log(formValues)
   }
 
   const submit = (e) => {
+    // Prevent browser refresh
     e.preventDefault()
 
+    // Create a new object for the submitted order
     const newOrder = {
         name: formValues.name.trim(),
         size: formValues.size,
@@ -82,8 +83,15 @@ const App = () => {
         special: formValues.special.trim(),
         order: formValues.qty
     }
+
+    // Post the order and log the results
+    axios.post('https://reqres.in/api/orders', newOrder)
+      .then(res => {
+        // console.log(res)
+        setOrder(res.data)
+      })
+    
     console.log(newOrder)
-    setOrder(newOrder)
     setFormValues(initialValues)
 }
 
@@ -100,7 +108,7 @@ const App = () => {
           submit={submit}
           errors={formErrors}
           disabled={disabled}
-          />
+        />
       </Route>
 
       <Route path='/ordered'>

@@ -23,6 +23,10 @@ header {
   margin: 0 3%;
 }
 
+h2 {
+  margin-bottom: 10%;
+}
+
 .logo {
   font-size: 1rem;
   color: crimson;
@@ -55,6 +59,7 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: left;
+  margin-bottom: 25%;
 }
 
 .subheader,
@@ -62,6 +67,16 @@ body {
 .subheader p {
   background-color: crimson;
   color: white;
+  margin: 0;
+  padding: 1% 0;
+}
+.subheader h4,
+.subheader p {
+  padding-left: 2%;
+}
+
+.subheader {
+  margin-top: 3%;
 }
 
 .sauce {
@@ -79,6 +94,4 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-/* Slider */
 
