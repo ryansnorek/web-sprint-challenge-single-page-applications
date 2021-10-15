@@ -23,8 +23,9 @@ header {
   margin: 0 3%;
 }
 
-h1 {
+.logo {
   font-size: 1rem;
+  color: crimson;
 }
 
 nav {
@@ -47,5 +48,10 @@ body {
   padding: 3% 6%;
   color: white;
   font-weight: bold;
+}
+
+.sauce {
+  display: flex;
+  flex-direction: column;
 }
 
