@@ -1,13 +1,16 @@
 import React from 'react'
 import Header from './Header'
 
-export default function Pizza() {
+export default function Pizza(props) {
+
+    const { order } = props
+
+
     return (
     <>
         <Header/>
-        <body>
-            <h1>Congrats! Pizza is on it's way!</h1>
-        </body>
+        <h1>Congrats {order.name}! Pizza is on it's way!</h1>
+        
     </>
     )
 }

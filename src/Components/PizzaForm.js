@@ -1,17 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Header from './Header'
 
-export default function PizzaForm({ formValues, change, submit }) {
+export default function PizzaForm({ formValues, change, submit, errors }) {
    
-    // const [orderedToppings, setOrderedToppings] = useState([])
-
     const onChange = (e) => {
+        // Pull variables out of event.target object
         const { name, value, checked, type } = e.target
+        // If it's a checkbox send the boolean value
+        // Otherwise send the input value
         const theValue = type === 'checkbox' ? checked : value
-        // console.log(e.target.name)
-        // console.log(e.target.value)
-        // console.log(e.target.type)
-        // console.log(theValue)
+        // Update the form data
         change(name, theValue)
     }
 
