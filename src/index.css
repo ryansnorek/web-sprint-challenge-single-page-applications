@@ -33,11 +33,19 @@ nav {
   align-items: center;
   width: 25%;
 }
+
 a {
   text-decoration: none;
 }
 
 body {
   text-align: center;
+}
+
+.pizza {
+  background-color: crimson;
+  padding: 3% 6%;
+  color: white;
+  font-weight: bold;
 }
 
