@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from './Header'
-import { Link } from 'react-router-dom'
 
 export default function PizzaForm({ formValues, change, submit, errors, disabled }) {
    
@@ -79,7 +78,7 @@ export default function PizzaForm({ formValues, change, submit, errors, disabled
                     </div>
                 </div>
                 <div className='subheader'>
-                    <h4>Choice of Substitue</h4>
+                    <h4>Choice of Substitute</h4>
                     {/* Add dynamic number */}
                     <p>Choose up to 1</p>
                 </div>
