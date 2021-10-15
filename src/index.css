@@ -43,15 +43,42 @@ body {
   text-align: center;
 }
 
-.pizza {
+.pizza-button {
   background-color: crimson;
   padding: 3% 6%;
   color: white;
   font-weight: bold;
 }
 
+.pizza-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
+
+.subheader,
+.subheader h4,
+.subheader p {
+  background-color: crimson;
+  color: white;
+}
+
 .sauce {
   display: flex;
   flex-direction: column;
 }
+
+.toppings {
+  display: flex;
+  justify-content: center;
+}
+
+.toppings-left,
+.toppings-right {
+  display: flex;
+  flex-direction: column;
+}
+
+
 
