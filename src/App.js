@@ -1,10 +1,27 @@
 import React from "react";
-import Home from './Components/Home'
+import { Route, useParams } from 'react-router-dom';
+// Components
+import Home from './Components/Home';
+import PizzaForm from "./Components/PizzaForm";
+import Pizza from "./Components/Pizza";
 
 const App = () => {
+
+  const { url } = useParams()
+
   return (
     <>
-      <Home />
+      <Route path='/'>
+        <Home/>
+      </Route>
+
+      <Route path='/pizzaform'>
+        <PizzaForm/>
+      </Route>
+
+      <Route path='/pizza'>
+        <Pizza/>
+      </Route>
     </>
   );
 };
