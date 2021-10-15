@@ -4,10 +4,16 @@ import Header from './Header'
 export default function Help() {
     return (
     <>
-    <Header/>
-    <body>
+        <Header/>
         <h1>Help page</h1>
-    </body>
+        <a 
+            className='help' 
+            href='https://duckduckgo.com/' 
+            target='_blank'
+            rel='noreferrer'
+        >
+        Click here for help
+        </a>
     </>
     )
 }

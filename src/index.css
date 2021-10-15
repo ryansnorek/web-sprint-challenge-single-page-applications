@@ -41,6 +41,8 @@ nav {
 
 a {
   text-decoration: none;
+  font-weight: bold;
+
 }
 
 body {
@@ -75,8 +77,13 @@ body {
   padding-left: 2%;
 }
 
+.subheader p {
+  font-size: 0.6rem;
+}
+
 .subheader {
   margin-top: 3%;
+  box-shadow: 1px 1px 2px  #4f4f4f;
 }
 
 .sauce {
@@ -93,5 +100,28 @@ body {
 .toppings-right {
   display: flex;
   flex-direction: column;
+}
+
+#special-text {
+  width: 98%;
+  height: 50px;
+}
+
+.order {
+  margin: 5%;
+  text-align: center;
+}
+
+#order-button {
+  background-color: rgb(255, 255, 255);
+  color: crimson;
+  font-weight: bold;
+  padding: 3%;
+}
+
+.help {
+  background-color: orange;
+  padding: 3%;
+  color: white;
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
 
-export default function PizzaForm({ formValues, change, submit, errors, disabled }) {
+export default function PizzaForm({ formValues, change, submit, errors, disabled, redirect }) {
    
     const onChange = (e) => {
         // Pull variables out of event.target object
@@ -33,7 +33,6 @@ export default function PizzaForm({ formValues, change, submit, errors, disabled
                 </label>
                 <div className='subheader'>
                     <h4>Choice of Size</h4>
-                    <p>Required</p>
                 </div>
                 <select id='size-dropdown' name='size' onChange={onChange}>
                     <option value=''>Select</option>
@@ -44,7 +43,6 @@ export default function PizzaForm({ formValues, change, submit, errors, disabled
                 </select>
                 <div className='subheader'>
                     <h4>Choice of Sauce</h4>
-                    <p>Required</p>
                 </div>
                 <div className='sauce'>
                     <label><input value='red' name='sauce' type='radio' onChange={onChange}></input>Original Red</label>
@@ -54,8 +52,6 @@ export default function PizzaForm({ formValues, change, submit, errors, disabled
                 </div>
                 <div className='subheader'>
                     <h4>Add Toppings</h4>
-                    {/* Add dynamic number */}
-                    <p>Choose up to 4</p>
                 </div>
                 <div className='toppings'>
                     <div className='toppings-left'>
@@ -79,8 +75,6 @@ export default function PizzaForm({ formValues, change, submit, errors, disabled
                 </div>
                 <div className='subheader'>
                     <h4>Choice of Substitute</h4>
-                    {/* Add dynamic number */}
-                    <p>Choose up to 1</p>
                 </div>
                 <label>
                     <input 
@@ -101,11 +95,13 @@ export default function PizzaForm({ formValues, change, submit, errors, disabled
                         onChange={onChange}
                     />
                 </label>
-                <div>
-                    <select name="qty">
-                        <option value='1'>1</option>
-                    </select>
-                    <button id='order-button' disabled={disabled}>Add to Order</button>
+                <div className='order'>
+                    <button 
+                        id='order-button' 
+                        disabled={disabled}
+                        onClick={redirect}
+                    >
+                    Order My Pizza</button>
                 </div>
             </form>
         </div>

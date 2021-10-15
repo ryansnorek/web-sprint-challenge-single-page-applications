@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import * as yup from 'yup'
 import schema from './validation'
 import axios from 'axios'
-// Components
+ // ****************** Components ******************
 import Home from './Components/Home';
 import PizzaForm from "./Components/PizzaForm";
 import Pizza from "./Components/Pizza";
 import Help from './Components/Help';
 
-// Initialize form values
+ // ****************** Initial variables ******************
 const initialValues = {
   name: '',
   size: '',
@@ -17,7 +17,6 @@ const initialValues = {
   toppings: '',
   sub: false,
   special: '',
-  order: '1'
 }
 const toppingList = [
   'pepperoni', 'sausage', 'canadianbacon', 'spicysausage',
@@ -27,19 +26,21 @@ const toppingList = [
 
 const App = () => {
 
+   // ****************** State ******************
   const [order, setOrder] = useState([])
   const [toppingsOrdered, setToppingsOrdered] = useState([])
   const [formValues, setFormValues] = useState(initialValues)
   const [formErrors, setFormErrors] = useState('')
   const [disabled, setDisabled] = useState(true)
 
-  // Validate the name input
-  const validate = (name, value) => {
 
+
+  // ****************** Validation ******************
+  const validate = (name, value) => {
     yup.reach(schema, name)
       .validate(value)
       .then(() => setFormErrors(''))
-      .catch(err => setFormErrors(err.errors[0]))
+      .catch(err => setFormErrors(err.errors))
   }
   
   useEffect(() => {
@@ -47,6 +48,8 @@ const App = () => {
     schema.isValid(formValues).then(valid => setDisabled(!valid))
   }, [formValues])
 
+
+ // ****************** Toppings ******************
   useEffect(() => {
     // Get all the checked toppings 
     const toppings = []
@@ -63,16 +66,18 @@ const App = () => {
     setToppingsOrdered(toppings)
   },[formValues])
 
+
+ // ****************** Form Changes ******************
   const change = (name, value) => {
     // Validate that the name input is over 2 characters
     if (name === 'name') validate(name, value)
     setFormValues({ ...formValues, [name]: value})
   }
 
+ // ****************** Submit ******************
   const submit = (e) => {
     // Prevent browser refresh
     e.preventDefault()
-
     // Create a new object for the submitted order
     const newOrder = {
         name: formValues.name.trim(),
@@ -81,19 +86,27 @@ const App = () => {
         toppings: toppingsOrdered,
         sub: formValues.sub,
         special: formValues.special.trim(),
-        order: formValues.qty
     }
-
     // Post the order and log the results
     axios.post('https://reqres.in/api/orders', newOrder)
       .then(res => {
-        // console.log(res)
         setOrder(res.data)
+        // returns a database record of 
+        // name, size, toppings and special instructions
       })
-    
+      .catch(err => console.log(`Error: ${err}`))
     console.log(newOrder)
+    // Reset form input fields
     setFormValues(initialValues)
-}
+  }
+
+   // ****************** Stretch Redirect ******************
+    // Redirect to the final ordered page 
+    const history = useHistory()
+    const redirect = () => {
+      let path = '/ordered'
+      history.push(path)
+    }
 
   return (
     <>
@@ -108,6 +121,9 @@ const App = () => {
           submit={submit}
           errors={formErrors}
           disabled={disabled}
+
+          // Cant get this to work without cancelling form
+          // redirect={redirect}
         />
       </Route>
 
