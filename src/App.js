@@ -4,6 +4,7 @@ import { Route, useParams } from 'react-router-dom';
 import Home from './Components/Home';
 import PizzaForm from "./Components/PizzaForm";
 import Pizza from "./Components/Pizza";
+import Help from './Components/Help';
 
 const App = () => {
 
@@ -11,7 +12,7 @@ const App = () => {
 
   return (
     <>
-      <Route path='/'>
+      <Route exact path='/'>
         <Home/>
       </Route>
 
@@ -21,6 +22,10 @@ const App = () => {
 
       <Route path='/pizza'>
         <Pizza/>
+      </Route>
+
+      <Route path='/help'>
+        <Help/>
       </Route>
     </>
   );
